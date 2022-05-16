@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home Page
+{% endblock title %}
+
+
+{% block content %}
+<style type="text/css">
+  @media (max-width: 768px) {
+    .right-column {
+      margin-left: 0px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .right-column {
+      margin-left: 20px;
+    }
+  }
+
+  .blog-post-container {
+    background-color: #f2f2f2;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .create-post-bar {
+    background-color: #f2f2f2;
+    margin-bottom: 20px;
+  }
+
+  .left-column {
+    padding: 0px;
+  }
+
+  .right-column {
+    padding: 0px;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+
+  
+    <!-- Blog Feed -->
+    <div class="left-column col-lg-7 offset-lg-1">
+      <div class="text-center"><h2>Categories</h2></div>
+      {% for category in categories %}
+
+       <a href="{% url 'show_category' category.name %}" class="text-decoration-none text-dark">
+        <div class="card m-2">
+          <div class="card-body m-2">
+           {{category.name}}
+          </div>
+        </div>
+       </a>
+
+      {% endfor %}
+
+    </div>
+    <!-- End Blog Feed -->
+
+
+    
+  </div>
+</div>
+
+
+
+
+{% endblock content %}

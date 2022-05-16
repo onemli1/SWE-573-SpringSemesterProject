@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}Create Space{% endblock title %}
+
+{% block content %}
+
+<style type="text/css">
+    .create-form {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+        margin: auto;
+    }
+
+    .submit-button {
+        max-width: 200px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7 offset-lg-1">
+            <form class="create-form" method="post">
+                {% csrf_token %}
+
+                <!-- title -->
+                <div class="form-group">
+                    <label for="id_title">Space Name</label>
+                    <input class="form-control" type="text" name="name" id="id_name" placeholder="Name" required
+                        autofocus>
+                </div>
+
+                <!--Category-->
+                <div class="form-group">
+                    <label for="id_title">Category</label>
+                    {% render_field form.category class="form-control" placeholder="Select Category" %}
+                </div>
+
+                <!-- Submit btn -->
+                <div class="d-flex justify-content-center"><button class="submit-button btn btn-lg btn-outline-primary btn-block" type="submit">CREATE IT</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

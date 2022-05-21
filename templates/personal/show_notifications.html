@@ -60,6 +60,11 @@
                         <a href="{% url 'show-notification'  notification.id notification.comment.post.id %}">@{{ notification.from_user.username }} liked your comment.</a>
                         <span class="dropdown-item-close">&times;</span>
                     </div>
+                {% elif notification.notification_type == 3 %}
+                    <div class="dropdown-item-parent">
+                        <a href="{% url 'show-notification'  notification.id notification.comment.post.id %}">@{{ notification.from_user.username }} replied your comment.</a>
+                        <span class="dropdown-item-close">&times;</span>
+                    </div>
                 {% endif %}
             {% endif %}
         {% endfor %}

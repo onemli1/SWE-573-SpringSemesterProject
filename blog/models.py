@@ -58,7 +58,7 @@ class Comment(models.Model):
     
 
 class Notification(models.Model):
-    ## 1-Like 2-Comment
+    ## 1-Like 2-Comment 3-Reply
     notification_type       = models.SmallIntegerField()
     to_user                 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='notification_to', on_delete=models.CASCADE, null=True)
     from_user               = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='notification_from', on_delete=models.CASCADE, null=True)
@@ -70,8 +70,19 @@ class Notification(models.Model):
 
 
 
+class Reply(models.Model):
+    comment                     = models.ForeignKey(Comment, related_name='replies', on_delete=models.CASCADE)
+    user                        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    reply                       = models.TextField(max_length=2000)
+    timestamp                   = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.user.username
+    
 
+    @property
+    def get_replies(self):
+        return self.replies.all()
 
 
 

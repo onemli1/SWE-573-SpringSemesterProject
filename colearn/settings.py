@@ -83,8 +83,8 @@ WSGI_APPLICATION = 'colearn.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-'''
 
+"""
 DB_NAME = "colearn_db"
 DB_USER = "django"
 DB_PASSWORD = "pass1234"
@@ -98,7 +98,8 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-'''
+"""
+
 # POSTGRES database is used for this project
 # This setup is for DOCKER's postgres image
 
@@ -113,6 +114,7 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+
 
 
 # Password validation

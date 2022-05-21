@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from blog.models import BlogPost, Notification, Comment
-from blog.forms import CreateBlogPostForm, UpdateBlogPostForm, CreateCommentForm
+from blog.models import BlogPost, Notification, Comment, Reply
+from blog.forms import CreateBlogPostForm, UpdateBlogPostForm, CreateCommentForm, CreateReplyForm
 from account.models import Account
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -255,4 +255,33 @@ def post_notification(request, notification_pk, post_pk):
     return redirect('detail-post', post.slug)
 
 
+def reply_comment_view(request, comment_id):
+    context = {}
+
+    user = request.user
+    if not user.is_authenticated:
+        return redirect('must-authenticate')
+    
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    form = CreateReplyForm(request.POST or None)
+
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.user = user
+        obj.comment = comment
+        obj.save()
+
+        note = Notification()
+        note.notification_type = 3
+        note.to_user = comment.author
+        note.from_user = user
+        note.comment = comment
+        note.save()
+        return redirect('detail-post', comment.post.slug)
+    else:
+        print('asdasdasd')
+    context['form'] = form
+       
+    return render(request, 'blog/create_reply.html', context)
 

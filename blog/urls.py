@@ -17,6 +17,8 @@ from blog.views import (
     remove_unlike_comment_view,
     post_notification,
     delete_post_view,
+    reply_comment_view,
+
 )
 
 
@@ -36,6 +38,8 @@ urlpatterns = [
     path("<slug>/<int:comment_id>/comment/remove_unlike_comment", remove_unlike_comment_view, name='remove-unlike-comment'),
 
     path("show_notification/<int:notification_pk>/<int:post_pk>/", post_notification, name='show-notification'),
+
+    path('create_reply/<comment_id>', reply_comment_view, name='reply-comment'),
 
 ]
 

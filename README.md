@@ -5,8 +5,6 @@ This repository is created for SWE573 project.
 This website is designed as a platform where people can share what they want to teach each other.The expectation of students is their unsupressed eagerness to learn.
 The website do not contain any payment or credit system.
 
-There will be also an event option to make people meet and share some funny time.
-
 To get the source code on your local machine, you can use 
 ```git init``` command, and then ```https://github.com/onemli1/SWE-573-SpringSemesterProject.git``` command.
 
@@ -66,7 +64,7 @@ If you want without docker running. You have to make local database configuratio
    
    ``` }```
 
-
+You have to write local DB_NAME ,DB_USER,DB_PASSWORD.
 
 
 The system also has an admin side. So, to create an admin user, please run the command ```python manage.py createsuperuser```.
